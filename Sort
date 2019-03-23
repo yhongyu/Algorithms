@@ -6,6 +6,11 @@ void swap(int *a,int i,int j){
     a[j] = a[i];
     a[i] = tmp;
 }
+void print(int *a, int n){
+    for (int k = 0;k<n;k++){
+        cout <<a[k]<<" ";
+    }
+}
 void BubbleSort(int *a, int len){
     int i = 0;
     int j = 0;
@@ -16,7 +21,7 @@ void BubbleSort(int *a, int len){
                 swap(a,j,j+1);
             }
             
-        } 
+        }
     }
     for (int k = 0;k<len;k++){
         cout <<a[k]<<" ";
@@ -41,7 +46,7 @@ void SelectionSort(int *a,int n){
 
 }
 void InsertSort(int *a,int len){
-    for (int i = 1;i<n;i++){
+    for (int i = 1;i<len;i++){
         //寻找元素a[i]合适的插入位置，未排序序列中每个元素和他前面的每一个元素相比较
         for (int j = i;j>0;j--){
             if (a[j]<a[j-1]){
@@ -52,9 +57,44 @@ void InsertSort(int *a,int len){
         }
     }
 }
+
+// void ShellSort(int *a, int n){
+    //增量序列1,4,13,40,121,364...
+    // int h = 1;
+    // while (h<n/3){
+    //     h = 3*h+1;
+    // }
+    // while(h>=1){
+    //     for (int i =1;i<n;i++){
+            
+    //     }
+    // }
+    
+// }
+void ShellSort(int *a, int len){
+    int i,j;
+    int increment = len;
+    int key;
+    while (increment>1){//最后在增量为1并且执行完了的情况下停止
+        increment = increment /3 +1;
+        for (i = increment; i<len ; i++){//从0开始，对相对增量步长的元素集合进行修改
+            key = a[i];
+            j = i - increment;
+            while (j>=0){
+                if(key<a[j]){
+                    swap(a,j,j+increment);
+                }
+                j = j - increment;
+            }
+        }
+        
+    }
+    print(a,len);
+}
 int main(){
     int a[5] =  {2,1,5,2,8};
     // BubbleSort(a,5);
-    SelectionSort(a,5);
+    // SelectionSort(a,5);
+    ShellSort(a,5);
     return 0;
 }
