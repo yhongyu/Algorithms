@@ -71,25 +71,44 @@ void InsertSort(int *a,int len){
     // }
     
 // }
-void ShellSort(int *a, int len){
+void ShellSort(int *a, int n){
     int i,j;
-    int increment = len;
+    int increment = n;
     int key;
-    while (increment>1){//最后在增量为1并且执行完了的情况下停止
-        increment = increment /3 +1;
-        for (i = increment; i<len ; i++){//从0开始，对相对增量步长的元素集合进行修改
+    while (increment>1){
+        increment = increment/3 + 1;
+        for (i = increment;i<n;i++){
             key = a[i];
             j = i - increment;
             while (j>=0){
-                if(key<a[j]){
+                if (key <a[j]){
                     swap(a,j,j+increment);
                 }
                 j = j - increment;
             }
+            
         }
-        
     }
     print(a,len);
+}
+void MergeSort(int *a, int l, int mid, int r){//l,...,mid,mid+1,...,r
+    int a[r-l+1];
+    for (int i = l; i<=r;i++)
+        a[i-l] = a[i];
+    int i=l,j = mid+1;
+    for (int k=l; k<=r;k++){
+        if(i>mid){//如果最半边完事
+            a[k] = a[j-l];
+            j++;
+        }
+        else if (j>r){
+            a[k] = a[i-l];
+            i++;
+        }
+        else{
+            
+        }
+    }
 }
 int main(){
     int a[5] =  {2,1,5,2,8};
