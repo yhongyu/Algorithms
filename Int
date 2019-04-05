@@ -1,0 +1,26 @@
+7.反转整数
+
+#include<iostream>
+using namespace std;
+//非主流方案(效率高一点)
+int reverse(int number)
+{
+	int sum = 0;
+	while (number != 0)
+	{
+		int num = sum * 10;
+		if (num / 10 != sum)
+		{//在这儿判断是否溢出
+			return 0;
+		}
+		sum = num;
+		sum += number % 10;
+		number = number / 10;
+	}
+	return sum;
+}
+--------------------- 
+作者：DeepHacking 
+来源：CSDN 
+原文：https://blog.csdn.net/deephacking/article/details/82874853 
+版权声明：本文为博主原创文章，转载请附上博文链接！
