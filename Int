@@ -3,19 +3,22 @@
 #include<iostream>
 using namespace std;
 //非主流方案(效率高一点)
-int reverse(int number)
-{
-	int sum = 0;
-	while (number != 0)
-	{
-		int num = sum * 10;
-		if (num / 10 != sum)
-		{//在这儿判断是否溢出
-			return 0;
-		}
-		sum = num;
-		sum += number % 10;
-		number = number / 10;
-	}
-	return sum;
+int reverse(int x) {
+    long i = 0;//这里的数据定义成long型常量，不然在网站上无法执行
+    long t = x;
+    while(t)
+    {
+        i = 10*i + (t%10);
+        t=t/10;
+    }
+    if(i < INT_MIN || i > INT_MAX)//如果大于或者小于临界值那么返回0
+    {
+        return 0;
+    }
+    return i;
 }
+--------------------- 
+作者：lucky52529 
+来源：CSDN 
+原文：https://blog.csdn.net/lucky52529/article/details/84302792 
+版权声明：本文为博主原创文章，转载请附上博文链接！
