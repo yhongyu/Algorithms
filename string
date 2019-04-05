@@ -1,0 +1,24 @@
+5. 字符串求回文子串，动态规划
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        //使用动态规划的思想
+        int dp[s.size()][s.size()]={0};
+        //i是left，j是right
+        int left = 0, right = 0, len=0;
+        for (int i=0; i<s.length();i++){
+            for (int j=0;j<i;j++){
+                if (s[i]==s[j]&&(i-j>2||dp[j+1][i-1]==1)){
+                    dp[j][i] = 1;
+                }
+                if (dp[j][i]&&len<i-j+1){
+                    len = j-i+1;
+                    left = j;
+                    right = i;
+                }
+            }
+            dp[i][i] = 1;
+        }
+        return s.substr(left,right-left+1);
+    }
+};
